@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}CREATE{% endblock title %}
+{%block head%}
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+	<form action="{% url 'book-create' %}" method="POST">
+		{% csrf_token %}
+		{{form.name | as_crispy_field}}
+		{{form.author | as_crispy_field}}
+		<div class = "ui-widget"
+		<label for = "tags"> Publisher: </label> <input id = "tags">
+	</div>{{form.publisher | as_crispy_field}}
+		{{form.title | as_crispy_field}}
+		{{form.place | as_crispy_field}}
+		{{form.category | as_crispy_field}}
+		{{form.pages | as_crispy_field}}
+		{{form.press | as_crispy_field}}
+		{{form.parts | as_crispy_field}}
+		{{form.notes | as_crispy_field}}
+
+		<p id ="demo"></p>
+		<input type="submit" value="Create">
+	</form>
+
+
+
+ <script>
+
+ 	var my_list = "{{ publishers }}";
+ 	console.log(my_list);
+  $( function() {
+    var availableTags = [
+    'publisher'];
+    console.log(availableTags);
+
+    ;
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+ </script>
+
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock %}

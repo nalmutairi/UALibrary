@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}CREATE{% endblock title %}
+{%block head%}
+
+{% endblock %}
+
+
+{% block content %}
+	<form action="{% url 'book-create' %}" method="POST">
+		{% csrf_token %}
+		<div class = "container">
+		<div class = "row">
+			<div class = "col-3">
+				{{ bookform.name |as_crispy_field }}
+			</div>
+			<div class = "col-3">
+            	{{ bookform.author |as_crispy_field }}
+            </div>
+            <div class = "col-3">
+            	{{ bookform.pages |as_crispy_field }}
+            </div>
+            <div class = "col-3">
+            	{{ bookform.press | as_crispy_field }} 
+            </div>
+        </div>
+        <div class = "row">
+        	<div class = "col-3">
+        		Publisher: {{ pubform.publishername |as_crispy_field }}
+        	</div>
+        	<div class = "col-3">
+        		Category: {{ catform.categoryname |as_crispy_field }}
+        	</div>
+        	<div class = "col-3">
+        		Place: {{ placeform.placename |as_crispy_field }}
+        	</div>
+        	<div class = "col-3">
+        		Title: {{ titleform.titlename | as_crispy_field }}
+        	</div>
+        </div>
+        <div class = "row">
+        	<div class = "col-4">
+        		{{ bookform.parts | as_crispy_field}}
+        	</div>
+        	<div class = "col-4">
+        		{{ bookform.notes | as_crispy_field}}
+        	</div>
+        </div>
+            <input type="submit" value="Create">
+         </div>
+       </form>
+{% endblock content %}
